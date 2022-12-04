@@ -1,0 +1,42 @@
+---
+version: "3"
+networks:
+  jenkins:
+    name: jenkins
+    driver: bridge
+services:
+  docker:
+    command: --storage-driver overlay2
+    container_name: jenkins-docker
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+    image: docker:dind
+    networks:
+      - jenkins
+    privileged: true
+    restart: on-failure
+    volumes:
+      - docker-certs:/certs/client
+      - data:/var/jenkins_home
+  jenkins:
+    container_name: jenkins-server
+    depends_on:
+      - docker
+    environment:
+      - DOCKER_HOST=tcp://docker:2376
+      - DOCKER_CERT_PATH=/certs/client
+      - DOCKER_TLS_VERIFY=1
+    image: jenkins-server:2.375.1-1
+    networks:
+      - jenkins
+    ports:
+      - 8080:8080
+      - 50000:50000
+    restart: on-failure
+    volumes:
+      - data:/var/jenkins_home
+      - docker-certs:/certs/client:ro
+
+volumes:
+  data:
+  docker-certs:
