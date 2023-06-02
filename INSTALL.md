@@ -19,7 +19,7 @@ docker run \
   docker:dind \
   --storage-driver overlay2
 
-docker build -t jenkins-server:2.375.1-1 .
+docker build -t jenkins-server:2.401.1-lts-jdk11 .
 
 docker run \
   --name jenkins-server \
@@ -33,7 +33,7 @@ docker run \
   --publish 50000:50000 \
   --volume jenkins-data:/var/jenkins_home \
   --volume jenkins-docker-certs:/certs/client:ro \
-  jenkins-server:2.375.1-1
+  jenkins-server:2.401.1-lts-jdk11
 ```
 
 ## Extra Plugins (other than sugegsted ones)

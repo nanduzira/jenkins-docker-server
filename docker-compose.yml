@@ -26,7 +26,7 @@ services:
       - DOCKER_HOST=tcp://docker:2376
       - DOCKER_CERT_PATH=/certs/client
       - DOCKER_TLS_VERIFY=1
-    image: jenkins-server:2.375.1-1
+    image: jenkins-server:2.401.1-lts-jdk11
     networks:
       - jenkins
     ports:
