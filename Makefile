@@ -2,7 +2,7 @@
 
 .PHONY: docker
 docker: ## Build Jenkins docker image
-	docker build -t jenkins-server:2.401.1-lts-jdk11 .
+	docker build -t jenkins-server:2.426.2-lts-jdk17 .
 
 .PHONY: help
 help: ## --> It's me here..... "THE HELP" <--
