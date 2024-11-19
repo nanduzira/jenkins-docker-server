@@ -7,7 +7,6 @@ networks:
 services:
   docker:
     command: --storage-driver overlay2
-    container_name: jenkins-docker
     environment:
       - DOCKER_TLS_CERTDIR=/certs
     image: docker:dind
@@ -18,8 +17,7 @@ services:
     volumes:
       - docker-certs:/certs/client
       - data:/var/jenkins_home
-  jenkins:
-    container_name: jenkins-server
+  server:
     depends_on:
       - docker
     environment:
