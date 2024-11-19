@@ -1,12 +1,11 @@
 ---
-version: "3"
 networks:
   jenkins:
     name: jenkins
     driver: bridge
 services:
   docker:
-    command: --storage-driver overlay2
+    command: --storage-driver overlay2 --config-file /etc/docker/daemon.json
     environment:
       - DOCKER_TLS_CERTDIR=/certs
     image: docker:dind
@@ -17,6 +16,7 @@ services:
     volumes:
       - docker-certs:/certs/client
       - data:/var/jenkins_home
+      - ./docker:/etc/docker:ro
   server:
     depends_on:
       - docker
