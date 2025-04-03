@@ -12,7 +12,7 @@ services:
     networks:
       - jenkins
     privileged: true
-    restart: on-failure
+    restart: unless-stopped
     volumes:
       - docker-certs:/certs/client
       - data:/var/jenkins_home
@@ -30,7 +30,7 @@ services:
     ports:
       - 8080:8080
       - 50000:50000
-    restart: on-failure
+    restart: unless-stopped
     volumes:
       - data:/var/jenkins_home
       - docker-certs:/certs/client:ro

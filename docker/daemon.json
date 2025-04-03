@@ -2,7 +2,8 @@
     "builder": {
         "gc": {
             "enabled": true,
-            "defaultKeepStorage": "50GB"
+            "defaultKeepStorage": "50GB",
+            "maxKeepStorage": "75GB"
         }
     }
 }
